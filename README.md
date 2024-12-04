@@ -1,6 +1,20 @@
 # Netflix GPT
 --Create React App
 --Add Tailwind Css
+--Header
+--Routing for app
+--Login Form
+--Sign Up Form
+--Form Validation --useRef Hook
+--npm install firebase
+--firebase SetUp 
+--firebase deploy --Deploying our App to Production
+--Create Sign Up User Account
+--Implement Sign In User API
+--Created Redux Store with User Slice
+--Implemented Sign Out
+--Update Profile
+--Fetch Movies from TMDB
 
 # Features
 --Login/Sign Up
