@@ -6,6 +6,7 @@ import { auth } from '../Utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/userSlice'
+import { Header_LOGO, Photo_LOGO } from '../Utils/Constant';
 
 const Login = () => {
   const [isSignInForm,setIsSignInForm] = useState(true);
@@ -43,7 +44,7 @@ const Login = () => {
     // Signed up 
     const user = userCredential.user;
     updateProfile(user, {
-      displayName: name.current.value, photoURL: "https://img.freepik.com/premium-photo/cinema-logo-movie-emblem-template-movie-production-logo-film-camera-logo-template-film-strip-ci_1041545-4853.jpg"
+      displayName: name.current.value, photoURL: Photo_LOGO
     }).then(() => {
       const {uid,email,displayName,photoURL} = auth.currentUser;
       
@@ -52,7 +53,7 @@ const Login = () => {
         displayName: displayName,
         photoURL: photoURL,
       }));
-      navigate("/browse");
+      //navigate("/browse");
       // Profile updated!
       // ...
     }).catch((error) => {
@@ -61,7 +62,7 @@ const Login = () => {
       // ...
     });
     console.log(user);
-    navigate("/browse");
+   // navigate("/browse");
 
     
     // ...
@@ -114,19 +115,19 @@ const Login = () => {
     <div>
      <Header />
      <div className=' absolute'>
-     <img src="https://assets.nflxext.com/ffe/siteui/vlv3/2bcf01ee-7ef6-4930-b0d5-c6863853c461/web/IN-en-20241125-TRIFECTA-perspective_a47db038-756f-4f26-b1f7-cfc882b98746_large.jpg" 
+     <img className='h-screen object-cover' src={Header_LOGO}
       alt='Logo'/>
      </div>
-     <form onSubmit={(e)=>e.preventDefault()} className='w-3/12 absolute p-12 bg-black my-40 mx-auto right-0 left-0 bg-opacity-80 rounded-lg text-white'>
-        <div className='text-3xl text-white font-bold mb-8'>{isSignInForm ? "Sign In" : "Sign Up"}</div>
-        {!isSignInForm && <input ref={name}  type='text' placeholder='Full Name' className='p-4 my-2 bg-gray-800 w-full bg-opacity-60 rounded-lg'/>}
-        <input type='text' ref={email} placeholder='Email or phone number' className='p-4 my-2 bg-gray-800 w-full bg-opacity-60 rounded-lg'/>
+     <form onSubmit={(e)=>e.preventDefault()} className='w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
+        <div className='font-bold text-3xl py-4'>{isSignInForm ? "Sign In" : "Sign Up"}</div>
+        {!isSignInForm && <input ref={name}  type='text' placeholder='Full Name' className='p-4 my-4 w-full bg-gray-700'/>}
+        <input type='text' ref={email} placeholder='Email or phone number' className='p-4 my-4 w-full bg-gray-700'/>
         
-        <input type='password' ref={password} placeholder='Password' className='p-4 my-2 bg-gray-800 w-full bg-opacity-60 rounded-lg'/>
-        <p className='text-red-500'>{errorMesage}</p>
-        <button className='p-4 my-2 bg-red-600 text-white w-full rounded-lg' onClick={handleOnClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
+        <input type='password' ref={password} placeholder='Password' className='p-4 my-4 w-full bg-gray-700'/>
+        <p className='text-red-500 font-bold text-lg py-2'>{errorMesage}</p>
+        <button className='p-4 my-6 bg-red-700 w-full rounded-lg' onClick={handleOnClick}>{isSignInForm ? "Sign In" : "Sign Up"}</button>
         
-      <p className='p-4 cursor-pointer' onClick={toggleSignInForm}> {isSignInForm ? "New to Netflix? Sign Up Now" : "Already Registered Sign In Now"} </p>
+      <p className='py-4 cursor-pointer' onClick={toggleSignInForm}> {isSignInForm ? "New to Netflix? Sign Up Now" : "Already Registered Sign In Now"} </p>
      </form>
     </div>
   )
