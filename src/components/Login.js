@@ -6,7 +6,7 @@ import { auth } from '../Utils/firebase';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../Utils/userSlice'
-import { Header_LOGO, Photo_LOGO } from '../Utils/Constant';
+import { BG_LOGO, Photo_LOGO } from '../Utils/Constant';
 
 const Login = () => {
   const [isSignInForm,setIsSignInForm] = useState(true);
@@ -86,14 +86,14 @@ const Login = () => {
     const user = userCredential.user;
     
     console.log(user);
-    navigate("/browse");
+   // navigate("/browse");
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     setErrorMesage(errorCode +"-"+ errorMessage);
-    navigate("/");
+    //navigate("/");
   });
     }
 
@@ -115,7 +115,7 @@ const Login = () => {
     <div>
      <Header />
      <div className=' absolute'>
-     <img className='h-screen object-cover' src={Header_LOGO}
+     <img className='w-screen object-cover' src={BG_LOGO}
       alt='Logo'/>
      </div>
      <form onSubmit={(e)=>e.preventDefault()} className='w-full md:w-3/12 absolute p-12 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
